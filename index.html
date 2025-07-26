@@ -243,10 +243,6 @@
             transform: scale(1.05);
         }
 
-        .about-section {
-            background-color: #111;
-        }
-
         .testimonials {
             background-color: #444;
             margin: 20px 0;
@@ -281,6 +277,7 @@
         }
 
         .slideshow-section {
+            background-color: #111;
             position: relative;
             width: 100%;
             height: 100vh;
@@ -306,6 +303,18 @@
 
         .slide.previous {
             left: -100%;
+        }
+
+        @media (max-width: 768px) {
+
+            .slideshow-section {
+                height: 900px;
+            }
+
+            .slide {
+                margin-top: 100px;
+            }
+
         }
 
         h1,
@@ -429,7 +438,7 @@
     </section>
 
     <!-- Sobre a Marca -->
-    <section id="sobre" class="about-section slideshow-section">
+    <section id="sobre" class="slideshow-section">
 
         <div class="slide active" id="slide1">
             <div class="text-container">
