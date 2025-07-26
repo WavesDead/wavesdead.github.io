@@ -17,30 +17,151 @@
         }
 
         .header {
-            background-color: #111;
-            /* Preto Rei */
-            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--primary-color);
+            position: relative;
+            z-index: 1000;
+        }
+
+        :root {
+            --primary-color: #000;
+            --secondary-color: #333;
+            --accent-color: #d4af37;
+            --text-color: #fff;
+            --transition: all 0.3s ease;
         }
 
         .logo {
-            width: 150px;
-            /* Espaço para imagem em PNG */
+            height: 90px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
 
         .nav-link {
-            color: #f0f0f0;
-            /* Branco Nevoeiro */
-            margin: 0 15px;
+            color: var(--text-color);
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
         }
 
         .nav-link:hover {
-            color: #d4af37;
-            /* Dourado Monarca */
+            color: var(--accent-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .button {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .button:hover {
+            background-color: #c0a030;
+            transform: translateY(-2px);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary-color);
+            padding: 1rem 5%;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .button {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .dropdown-menu.show {
+                display: flex;
+                animation: dropdownFade 0.3s ease-in-out;
+            }
+
+            .logo {
+                height: 65px;
+            }
+        }
+
+        /* Animations */
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .button {
@@ -124,14 +245,30 @@
 
 <body>
 
+    <!-- Topo do Site -->
     <header class="header">
         <img src="IMG/logo.png" alt="Logo KingsStreet" class="logo"> <!-- Espaço para imagem em PNG -->
-        <nav>
+        <nav class="nav-links">
             <a href="index.html" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Coleções</a>
-            <a href="#" class="nav-link">Sobre</a>
+            <a href="colectionRoyal.html" class="nav-link">Coleções</a>
+            <a href="index.html#sobre" class="nav-link scroll-link">Sobre</a>
         </nav>
-        <button class="button">Conta</button>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </button>
+
+        <button class="button" id="account-btn">Conta</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="#">Home</a>
+            <a href="colectionRoyal.html">Coleções</a>
+            <a href="#sobre" class="scroll-link">Sobre</a>
+            <a href="#" class="button-mobile"
+                style="background-color: var(--accent-color); color: var(--primary-color); border: none; border-radius: 4px; padding: 0.5rem; text-align: center; width: fit-content;">Conta</a>
+        </div>
     </header>
 
     <div class="min-h-screen flex flex-col items-center justify-center p-4">
@@ -252,6 +389,46 @@
             setInterval(rotateSubtitle, 3000);
         });
     </script>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const accountBtn = document.getElementById('account-btn');
+        // Toggle dropdown menu
+        hamburger.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+            hamburger.setAttribute('aria-expanded', dropdownMenu.classList.contains('show'));
+        });
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header')) {
+                dropdownMenu.classList.remove('show');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.scroll-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close dropdown menu if open
+                    if (dropdownMenu.classList.contains('show')) {
+                        dropdownMenu.classList.remove('show');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
