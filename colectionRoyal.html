@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="IMG/logo.png">
+    <title>KingsStreet - Collection #1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@400;700;900&display=swap');
+
+        body {
+            background-color: #111;
+            color: white;
+            font-family: 'Urbanist', sans-serif;
+        }
+
+        .header {
+            background-color: #111;
+            /* Preto Rei */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px;
+            /* Espaço para imagem em PNG */
+        }
+
+        .nav-link {
+            color: #f0f0f0;
+            /* Branco Nevoeiro */
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #d4af37;
+            /* Dourado Monarca */
+        }
+
+        .button {
+            background-color: transparent;
+            border: 2px solid #d4af37;
+            /* Dourado Monarca */
+            color: #d4af37;
+            /* Dourado Monarca */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d4af37;
+            /* Dourado Monarca */
+            color: #111;
+            /* Preto Rei */
+        }
+
+        .kings-logo {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 3px;
+        }
+
+        .graffiti-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .graffiti-effect::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 20%),
+                linear-gradient(45deg, rgba(255, 50, 50, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .broken-border {
+            position: relative;
+        }
+
+        .broken-border::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid #555;
+            clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px,
+                    100% 100%, 15px 100%, 0 calc(100% - 15px));
+            z-index: -1;
+        }
+
+        .street-tag {
+            display: inline-block;
+            transform: rotate(-5deg);
+            background: #333;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+
+        .footer {
+            background-color: #111;
+            /* Preto Rei */
+            color: #f0f0f0;
+            /* Branco Nevoeiro */
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <img src="IMG/logo.png" alt="Logo KingsStreet" class="logo"> <!-- Espaço para imagem em PNG -->
+        <nav>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Coleções</a>
+            <a href="#" class="nav-link">Sobre</a>
+        </nav>
+        <button class="button">Conta</button>
+    </header>
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="w-full max-w-3xl mx-auto">
+            <!-- Capa da Coleção -->
+            <div class="graffiti-effect relative mb-10 rounded-lg overflow-hidden">
+                <img src="IMG/Royal.png"
+                    alt="Trono real destruído em estilo grafite urbano, com detalhes dourados queimados e pichações, fundo de tijolos com tags de rua, iluminação dramática de beco"
+                    class="w-full h-auto">
+
+                <div
+                    class="absolute inset-0 flex flex-col items-center justify-end p-6 pb-10 bg-gradient-to-t from-black/80 to-transparent">
+                    <span class="street-tag text-yellow-400 mb-2">COLLECTION #1</span>
+                    <h1 class="kings-logo text-5xl md:text-7xl text-center mb-2 text-yellow-400">KING<span
+                            class="text-white">STREET</span></h1>
+                    <p class="text-lg text-center uppercase tracking-widest">The Fall of Crowns</p>
+                </div>
+
+                <!-- Detalhes de rua -->
+                <div class="absolute top-4 right-4 text-xs bg-black/60 px-2 py-1 rounded">EST. 2026</div>
+                <div class="absolute bottom-4 left-4 text-xs rotate-[-15deg]">⚔️ ONLY THE STRONG SURVIVE</div>
+            </div>
+
+            <!-- Detalhes da Coleção -->
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="broken-border p-6 bg-zinc-900/70">
+                    <h2 class="kings-logo text-3xl mb-4">CONCEITO</h2>
+                    <p class="mb-4">Sinta o peso da sua coroa mesmo quando ela não está na cabeça.
+                        A Royal Back é mais do que uma camiseta — é uma declaração.
+
+                        Com arte exclusiva em estilo grafite urbano, ela funde o poder da realeza com a essência das
+                        ruas. A ilustração traz um símbolo dual: a força e a beleza de uma mente soberana, e o caos da
+                        alma que jamais se dobra. Tudo isso sobreposto ao nome que carrega nossa verdade: KingStreet.
+
+                        Feita em malha premium, com corte oversized que entrega presença e autenticidade.
+                        Ideal para quem veste atitude e carrega legado.</p>
+                </div>
+
+                <div class="flex flex-col">
+                    <div class="flex-1 mb-4 overflow-hidden rounded-lg">
+                        <img src="IMG/Royal.png" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-xs text-zinc-400 text-right">CAMISETA - "ROYAL BACK"</div>
+                </div>
+            </div>
+
+            <!-- Cartão de Lookbook -->
+            <div class="bg-black p-1 rounded-lg mb-10">
+                <div class="border border-zinc-800 p-6 rounded-lg">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h2 class="kings-logo text-3xl mb-4">PEÇA</h2>
+                            <p class="mb-4">Pedaços de realeza dissecados e reconstruídos com DNA urbano. Tecidos nobres
+                                com
+                                cortes brutos, detalhes em azul royal e silhuetas que comandam respeito.
+                                Gola reforçada e costura de alta durabilidade
+                                Estampa digital em alta definição no verso
+                                Cor: Bege Terracota – conexão com as ruas e raízes
+                                Modelagem: Oversized (unissex)</p>
+                            <button
+                                class="bg-yellow-600 hover:bg-yellow-700 text-black font-bold py-2 px-6 rounded-full transition duration-300">
+                                PRÉ-VENDA
+                            </button>
+                        </div>
+                        <div class="flex-1 grid grid-cols-2 gap-2">
+                            <img src="IMG/Royal-Front.png" class="w-full h-auto">
+                            <img src="IMG/Royal-Back.png" class="w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chamada para Ação -->
+            <div class="text-center py-8">
+                <h3 class="kings-logo text-4xl mb-2">KINGSTREET</h3>
+                <p class="mb-6 uppercase text-sm tracking-widest">ONDE AS RUAS USAM COROAS</p>
+                <button
+                    class="border-2 border-yellow-600 text-yellow-600 hover:bg-yellow-600 hover:text-black font-bold py-3 px-8 rounded-full transition duration-300">
+                    SHOP COLLECTION #1
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2025 KingsStreet. Todos os direitos reservados.</p>
+    </footer>
+
+    </div>
+
+    <script>
+        // Efeito de digitação
+        document.addEventListener('DOMContentLoaded', function () {
+            const subtitles = [
+                "NOBILITY DECODED",
+                "STREET CORONATION",
+                "ROYALTY RECLAIMED"
+            ];
+
+            const subtitleEl = document.createElement('div');
+            subtitleEl.className = 'text-center text-sm uppercase tracking-widest my-2 opacity-70';
+            document.querySelector('.text-center').appendChild(subtitleEl);
+
+            let currentIndex = 0;
+
+            function rotateSubtitle() {
+                subtitleEl.style.opacity = 0;
+
+                setTimeout(() => {
+                    subtitleEl.textContent = subtitles[currentIndex];
+                    currentIndex = (currentIndex + 1) % subtitles.length;
+                    subtitleEl.style.opacity = 0.7;
+                }, 500);
+            }
+
+            rotateSubtitle();
+            setInterval(rotateSubtitle, 3000);
+        });
+    </script>
+</body>
+
+</html>
