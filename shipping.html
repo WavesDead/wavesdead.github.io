@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="IMG/logo.png">
+    <title>KingStreet - Trocas e devoluções</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Blacklisted';
+            src: url('fonts/Blacklisted.ttf') format('truetype');
+        }
+
+        body {
+            background-color: #111;
+            /* Preto Rei */
+            color: #f0f0f0;
+            /* Branco Nevoeiro */
+            font-family: 'Bebas Neue', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--primary-color);
+            position: relative;
+            z-index: 1000;
+        }
+
+        :root {
+            --primary-color: #000;
+            --secondary-color: #333;
+            --accent-color: #d4af37;
+            --text-color: #fff;
+            --transition: all 0.3s ease;
+        }
+
+        .logo {
+            height: 90px;
+            width: auto;
+            transition: 0.5s;
+        }
+
+        .logo:hover {
+            transform: scale(1.08);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .brand-name {
+            font-size: 0.9rem;
+            color: #cacaca;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary-color);
+            padding: 1rem 5%;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .button {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .dropdown-menu.show {
+                display: flex;
+                animation: dropdownFade 0.3s ease-in-out;
+            }
+        }
+
+        /* Animations */
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .button {
+            background-color: transparent;
+            border: 2px solid #d4af37;
+            /* Dourado Monarca */
+            color: #d4af37;
+            /* Dourado Monarca */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d4af37;
+            /* Dourado Monarca */
+            color: #111;
+            /* Preto Rei */
+        }
+
+        main {
+            background-color: #444;
+            max-width: 100%;
+            margin: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        section {
+            background-color: #222;
+            padding: 20px;
+            border-left: 4px solid #d4af37;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+        }
+
+        h2 {
+            color: #d4af37;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            padding: 50px 20px 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            max-width: 160px;
+            margin-bottom: 15px;
+        }
+
+        .footer-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            border: 1px solid #333;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            padding: 12px;
+            flex: 1;
+            border: none;
+            background: none;
+            color: #fff;
+        }
+
+        .newsletter-input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-button {
+            background-color: #d4af37;
+            border: none;
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer-social a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #fff;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #d4af37;
+        }
+
+        .footer-section h4 {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #bbb;
+            margin-bottom: 6px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #222;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topo do Site -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="IMG/logo.png" alt="Logo KingsStreet" class="logo">
+            <span class="brand-name">KingStreet</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Drops</a>
+            <a href="#sobre" class="nav-link scroll-link">Sobre</a>
+        </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </button>
+
+        <button class="button" id="account-btn">Conta</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="#">Drops</a>
+            <a href="#sobre" class="scroll-link">Sobre</a>
+            <a href="#" class="button-mobile"
+                style="background-color: var(--accent-color); color: var(--primary-color); border: none; border-radius: 4px; padding: 0.5rem; text-align: center; width: fit-content;">Conta</a>
+        </div>
+    </header>
+
+    <main>
+        <h1>🚚 Frete e Entrega – KingStreet</h1>
+
+        <section>
+            <h2>1. Prazos de Entrega</h2>
+            <ul>
+                <li><strong>Brasil (Capitais e Regiões Metropolitanas):</strong> 5 a 10 dias úteis</li>
+                <li><strong>Brasil (Demais Regiões):</strong> 7 a 15 dias úteis</li>
+                <li><strong>Envio Internacional:</strong> Prazo varia conforme o país</li>
+            </ul>
+            <p><em>O prazo começa a contar após a confirmação do pagamento.</em></p>
+        </section>
+
+        <section>
+            <h2>2. Processamento do Pedido</h2>
+            <p>Pedidos confirmados até <strong>14h</strong> são processados no mesmo dia útil.</p>
+            <p>Você receberá um <strong>código de rastreio</strong> por e-mail após o envio.</p>
+        </section>
+
+        <section>
+            <h2>3. Valores de Frete</h2>
+            <ul>
+                <li><strong>Frete Grátis:</strong> Para compras acima de R$ 249,90</li>
+                <li>Demais pedidos: valor calculado no checkout de acordo com seu CEP</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Rastreamento do Pedido</h2>
+            <p>Você pode acompanhar seu pedido pelo link enviado no e-mail ou na área <strong>Minha Conta</strong> do
+                site.</p>
+        </section>
+
+        <section>
+            <h2>5. Observações Importantes</h2>
+            <ul>
+                <li>Em alta demanda, o prazo pode ser estendido em até 3 dias úteis</li>
+                <li>Verifique seu endereço para evitar atrasos ou devoluções</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- Logo e Newsletter -->
+            <div class="footer-section">
+                <img src="IMG/logo.png" alt="KingStreet" class="footer-logo">
+                <p class="footer-title">INSCREVA-SE PARA NOVIDADES E PROMOÇÕES EXCLUSIVAS</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-mail" class="newsletter-input">
+                    <button type="submit" class="newsletter-button">➔</button>
+                </form>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Nossos Produtos -->
+            <div class="footer-section">
+                <h4>Nossos Produtos</h4>
+                <a href="#">Oversized</a>
+                <a href="#">Outlet - 70% OFF</a>
+            </div>
+
+            <!-- Dúvidas -->
+            <div class="footer-section">
+                <h4>Dúvidas?</h4>
+                <a href="#">Rastrear Pedido</a>
+                <a href="shipping.html">Frete e Entrega</a>
+                <a href="change-item.html">Trocas e Devoluções</a>
+                <a href="privacy-policy.html">Política de Privacidade</a>
+            </div>
+
+            <!-- Missão -->
+            <div class="footer-section">
+                <h4>ENTRE NO MUNDO KINGSTREET</h4>
+                <p>
+                    A KingStreet nasceu para dominar o streetwear e o universo fitness, unindo estilo e performance.
+                    Nossa missão é trazer roupas que expressem atitude, conforto e a essência da realeza das ruas.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025, KingStreet. 00.000.000/0001-00
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const accountBtn = document.getElementById('account-btn');
+        // Toggle dropdown menu
+        hamburger.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+            hamburger.setAttribute('aria-expanded', dropdownMenu.classList.contains('show'));
+        });
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header')) {
+                dropdownMenu.classList.remove('show');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.scroll-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close dropdown menu if open
+                    if (dropdownMenu.classList.contains('show')) {
+                        dropdownMenu.classList.remove('show');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

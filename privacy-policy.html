@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="IMG/logo.png">
+    <title>KingStreet - Trocas e devoluções</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @font-face {
+            font-family: 'Blacklisted';
+            src: url('fonts/Blacklisted.ttf') format('truetype');
+        }
+
+        body {
+            background-color: #111;
+            /* Preto Rei */
+            color: #f0f0f0;
+            /* Branco Nevoeiro */
+            font-family: 'Bebas Neue', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background-color: var(--primary-color);
+            position: relative;
+            z-index: 1000;
+        }
+
+        :root {
+            --primary-color: #000;
+            --secondary-color: #333;
+            --accent-color: #d4af37;
+            --text-color: #fff;
+            --transition: all 0.3s ease;
+        }
+
+        .logo {
+            height: 90px;
+            width: auto;
+            transition: 0.5s;
+        }
+
+        .logo:hover {
+            transform: scale(1.08);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .brand-name {
+            font-size: 0.9rem;
+            color: #cacaca;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--text-color);
+        }
+
+        /* Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--secondary-color);
+            padding: 1rem 5%;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        .dropdown-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu a:hover {
+            color: var(--accent-color);
+            padding-left: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .button {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .dropdown-menu.show {
+                display: flex;
+                animation: dropdownFade 0.3s ease-in-out;
+            }
+        }
+
+        /* Animations */
+        @keyframes dropdownFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+                .button {
+            background-color: transparent;
+            border: 2px solid #d4af37;
+            /* Dourado Monarca */
+            color: #d4af37;
+            /* Dourado Monarca */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d4af37;
+            /* Dourado Monarca */
+            color: #111;
+            /* Preto Rei */
+        }
+
+        .privacy-policy {
+            background-color: #444;
+            color: #f5f5f5;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .privacy-policy .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .privacy-policy h1,
+        .privacy-policy h2 {
+            color: #FFD700;
+            /* Dourado KingStreet */
+        }
+
+        .privacy-policy a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        .privacy-policy ul {
+            margin: 10px 0 20px 20px;
+        }
+
+        .privacy-policy .last-update {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            padding: 50px 20px 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            max-width: 160px;
+            margin-bottom: 15px;
+        }
+
+        .footer-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            border: 1px solid #333;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            padding: 12px;
+            flex: 1;
+            border: none;
+            background: none;
+            color: #fff;
+        }
+
+        .newsletter-input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-button {
+            background-color: #d4af37;
+            border: none;
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer-social a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #fff;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #d4af37;
+        }
+
+        .footer-section h4 {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #bbb;
+            margin-bottom: 6px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #222;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topo do Site -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="IMG/logo.png" alt="Logo KingsStreet" class="logo">
+            <span class="brand-name">KingStreet</span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="#" class="nav-link">Drops</a>
+            <a href="#sobre" class="nav-link scroll-link">Sobre</a>
+        </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </button>
+
+        <button class="button" id="account-btn">Conta</button>
+
+        <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Home</a>
+            <a href="#">Drops</a>
+            <a href="#" class="scroll-link">Sobre</a>
+            <a href="#" class="button-mobile"
+                style="background-color: var(--accent-color); color: var(--primary-color); border: none; border-radius: 4px; padding: 0.5rem; text-align: center; width: fit-content;">Conta</a>
+        </div>
+    </header>
+
+    <section class="privacy-policy">
+        <div class="container">
+            <h1>Política de Privacidade – KingStreet</h1>
+            <p class="last-update">Última atualização: 02/08/2025</p>
+
+            <p>
+                A <strong>KingStreet</strong> valoriza a privacidade e a segurança dos dados de todos os clientes e
+                visitantes.
+                Esta Política de Privacidade explica como coletamos, utilizamos, armazenamos e protegemos suas
+                informações,
+                em conformidade com a <strong>Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018)</strong>.
+            </p>
+
+            <h2>1. Informações que Coletamos</h2>
+            <ul>
+                <li><strong>Dados pessoais:</strong> nome completo, CPF, endereço, e-mail, telefone.</li>
+                <li><strong>Dados de pagamento:</strong> informações de cartão de crédito/débito, PIX ou boleto
+                    (processados de forma segura).</li>
+                <li><strong>Dados de navegação:</strong> endereço IP, tipo de navegador, dispositivo, páginas acessadas.
+                </li>
+                <li><strong>Preferências de compra:</strong> histórico de pedidos e produtos visualizados.</li>
+            </ul>
+
+            <h2>2. Como Utilizamos Suas Informações</h2>
+            <ul>
+                <li>Processar e entregar seus pedidos.</li>
+                <li>Enviar atualizações sobre sua compra.</li>
+                <li>Melhorar a experiência de navegação no site.</li>
+                <li>Enviar promoções e novidades (com seu consentimento).</li>
+                <li>Cumprir obrigações legais.</li>
+            </ul>
+
+            <h2>3. Compartilhamento de Dados</h2>
+            <p>
+                A KingStreet <strong>não vende ou compartilha</strong> seus dados com terceiros para fins comerciais.
+                Seus dados podem ser compartilhados apenas com:
+            </p>
+            <ul>
+                <li>Empresas de logística.</li>
+                <li>Processadores de pagamento.</li>
+                <li>Parceiros de marketing (quando autorizado).</li>
+                <li>Autoridades legais, quando exigido por lei.</li>
+            </ul>
+
+            <h2>4. Armazenamento e Segurança</h2>
+            <p>
+                Adotamos medidas de segurança técnicas e administrativas para proteger seus dados contra acessos não
+                autorizados.
+                Dados de pagamento <strong>não são armazenados</strong> pela KingStreet.
+            </p>
+
+            <h2>5. Cookies e Tecnologias de Rastreamento</h2>
+            <p>
+                Utilizamos cookies para melhorar a funcionalidade, personalizar a experiência e analisar métricas.
+                Você pode desativá-los nas configurações do navegador.
+            </p>
+
+            <h2>6. Seus Direitos</h2>
+            <ul>
+                <li>Solicitar acesso aos seus dados.</li>
+                <li>Corrigir informações incorretas.</li>
+                <li>Solicitar exclusão de seus dados.</li>
+                <li>Revogar o consentimento para uso dos dados.</li>
+            </ul>
+            <p>Entre em contato pelo e-mail: <a
+                    href="mailto:privacidade@kingstreet.com.br">privacidade@kingstreet.com.br</a></p>
+
+            <h2>7. Alterações na Política de Privacidade</h2>
+            <p>
+                Podemos atualizar esta política periodicamente. A data da última atualização estará sempre disponível no
+                topo do documento.
+            </p>
+
+            <h2>8. Contato</h2>
+            <p>
+                📧 <strong>privacidade@kingstreet.com.br</strong><br>
+                📍 Rua Exemplo, 123 – São Paulo/SP – Brasil
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <!-- Logo e Newsletter -->
+            <div class="footer-section">
+                <img src="IMG/logo.png" alt="KingStreet" class="footer-logo">
+                <p class="footer-title">INSCREVA-SE PARA NOVIDADES E PROMOÇÕES EXCLUSIVAS</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-mail" class="newsletter-input">
+                    <button type="submit" class="newsletter-button">➔</button>
+                </form>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Nossos Produtos -->
+            <div class="footer-section">
+                <h4>Nossos Produtos</h4>
+                <a href="#">Oversized</a>
+                <a href="#">Outlet - 70% OFF</a>
+            </div>
+
+            <!-- Dúvidas -->
+            <div class="footer-section">
+                <h4>Dúvidas?</h4>
+                <a href="#">Rastrear Pedido</a>
+                <a href="shipping.html">Frete e Entrega</a>
+                <a href="change-item.html">Trocas e Devoluções</a>
+                <a href="privacy-policy.html">Política de Privacidade</a>
+            </div>
+
+            <!-- Missão -->
+            <div class="footer-section">
+                <h4>ENTRE NO MUNDO KINGSTREET</h4>
+                <p>
+                    A KingStreet nasceu para dominar o streetwear e o universo fitness, unindo estilo e performance.
+                    Nossa missão é trazer roupas que expressem atitude, conforto e a essência da realeza das ruas.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025, KingStreet. 00.000.000/0001-00
+        </div>
+    </footer>
+
+      <script>
+        const hamburger = document.getElementById('hamburger');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const accountBtn = document.getElementById('account-btn');
+        // Toggle dropdown menu
+        hamburger.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+            hamburger.setAttribute('aria-expanded', dropdownMenu.classList.contains('show'));
+        });
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.header')) {
+                dropdownMenu.classList.remove('show');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        });
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('.scroll-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close dropdown menu if open
+                    if (dropdownMenu.classList.contains('show')) {
+                        dropdownMenu.classList.remove('show');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
