@@ -492,8 +492,8 @@
         }
 
         .slide-img-one {
-            
             object-fit: cover;
+            margin-top: 0px;
             /* Mantém a proporção cobrindo o container */
             transition: transform 0.3s ease;
             /* Suaviza o zoom */
@@ -506,6 +506,7 @@
         .slide-img-two {
 
             object-fit: cover;
+            margin-top: 0px;
             /* Mantém a proporção cobrindo o container */
             transition: transform 0.3s ease;
             /* Suaviza o zoom */
@@ -529,6 +530,23 @@
 
             .slide-img-two {
                 background: url("IMG/Slides/Slide-Two-Mobilee.png");
+                background-repeat: no-repeat;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .carousel {
+                height: 600px;
+            }
+
+            .slide-img-one {
+                background: url("IMG/Slides/Slide-One-Mobilee.png");
+                background-repeat: no-repeat;
+            }
+
+            .slide-img-two {
+                background: url("IMG/Slides/Slide-Two-Mobile.png");
                 background-repeat: no-repeat;
             }
         }
