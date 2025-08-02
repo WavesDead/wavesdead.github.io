@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="IMG/logo.png">
-    <title>KingsStreet - Página Inicial</title>
+    <title>KingStreet - Página Inicial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @font-face {
+            font-family: 'Blacklisted';
+            src: url('fonts/Blacklisted.ttf') format('truetype');
+        }
+
         body {
             background-color: #111;
             /* Preto Rei */
             color: #f0f0f0;
             /* Branco Nevoeiro */
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Bebas Neue', sans-serif;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -38,11 +43,27 @@
         .logo {
             height: 90px;
             width: auto;
+            transition: 0.5s;
         }
 
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .brand-name {
+            font-size: 0.9rem;
+            color: #cacaca;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
 
         .nav-links {
             display: flex;
@@ -74,22 +95,6 @@
 
         .nav-link:hover::after {
             width: 100%;
-        }
-
-        .button {
-            padding: 0.6rem 1.2rem;
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-            border: none;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .button:hover {
-            background-color: #c0a030;
-            transform: translateY(-2px);
         }
 
         /* Hamburger Menu */
@@ -150,10 +155,6 @@
                 display: flex;
                 animation: dropdownFade 0.3s ease-in-out;
             }
-
-            .logo {
-                height: 65px;
-            }
         }
 
         /* Animations */
@@ -168,37 +169,43 @@
                 transform: translateY(0);
             }
         }
-    .banner {
-        position: relative;
-        width: 100%;
-        height: 600px; /* Altura fixa ou mínima */
-        overflow: hidden; /* Para esconder partes da imagem que saem do contêiner */
-    }
 
-    .banner-image {
-        width: 100%;
-        height: 100%;
-        object-position: center; /* Centraliza a imagem */
-    }
-
-    .absolute {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-    /* Estilos adicionais para responsividade */
-    @media (max-width: 768px) {
-        .kings-logo {
-            font-size: 4rem; /* Ajusta o tamanho da fonte em telas menores */
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            /* Altura fixa ou mínima */
+            overflow: hidden;
+            /* Para esconder partes da imagem que saem do contêiner */
         }
 
-        .text-lg {
-            font-size: 1rem; /* Ajusta o tamanho do texto em telas menores */
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-position: center;
+            /* Centraliza a imagem */
         }
-    }
+
+        .absolute {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        /* Estilos adicionais para responsividade */
+        @media (max-width: 768px) {
+            .kings-logo {
+                font-size: 4rem;
+                /* Ajusta o tamanho da fonte em telas menores */
+            }
+
+            .text-lg {
+                font-size: 1rem;
+                /* Ajusta o tamanho do texto em telas menores */
+            }
+        }
 
         .banner:hover img {
             transform: scale(1.1);
@@ -230,17 +237,126 @@
         }
 
         .product-card {
-            background-color: #444;
-            /* Cinza Asfalto */
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            text-align: center;
-            transition: transform 0.3s;
+            width: 320px;
+            background: #444;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .product-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .product-image.hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .product-card:hover .product-image.hover {
+            opacity: 1;
+        }
+
+        .product-card:hover .product-image.default {
+            opacity: 0;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #aaa;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #e7e7e7;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #c0a030;
+            margin-bottom: 12px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            color: #f3f3f3;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #c0a030;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background: #ffffff;
+            color: #c0a030;
+        }
+
+        .badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #666 linear-gradient(145deg, #444, #222);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .cards {
+
+            margin-top: 25px;
+            margin-right: 25px;
+
         }
 
         .testimonials {
@@ -267,15 +383,6 @@
             opacity: 1;
         }
 
-        .footer {
-            background-color: #111;
-            /* Preto Rei */
-            color: #f0f0f0;
-            /* Branco Nevoeiro */
-            text-align: center;
-            padding: 20px;
-        }
-
         .slideshow-section {
             background-color: #111;
             position: relative;
@@ -284,7 +391,7 @@
             overflow: hidden;
         }
 
-        .slide {
+        .slide-about {
             height: 100vh;
             width: 100vw;
             display: flex;
@@ -297,14 +404,6 @@
             transition: left 0.8s ease-in-out;
         }
 
-        .slide.active {
-            left: 0;
-        }
-
-        .slide.previous {
-            left: -100%;
-        }
-
         @media (max-width: 768px) {
 
             .slideshow-section {
@@ -315,6 +414,14 @@
                 margin-top: 100px;
             }
 
+        }
+
+        .slide-about.active {
+            left: 0;
+        }
+
+        .slide-about.previous {
+            left: -100%;
         }
 
         h1,
@@ -356,16 +463,247 @@
         .space-top {
             padding-top: 30px;
         }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .slides {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-img-one {
+            
+            object-fit: cover;
+            /* Mantém a proporção cobrindo o container */
+            transition: transform 0.3s ease;
+            /* Suaviza o zoom */
+
+            background: url("IMG/Slides/Slide-One-Normal.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .slide-img-two {
+
+            object-fit: cover;
+            /* Mantém a proporção cobrindo o container */
+            transition: transform 0.3s ease;
+            /* Suaviza o zoom */
+
+            background: url("IMG/Slides/Slide-Two-Normal.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Responsive Slide banner */
+        @media (max-width: 768px) {
+
+            .carousel {
+                height: 600px;
+            }
+
+            .slide-img-one {
+                background: url("IMG/Slides/Slide-One-Mobile.png");
+                background-repeat: no-repeat;
+            }
+
+            .slide-img-two {
+                background: url("IMG/Slides/Slide-Two-Mobilee.png");
+                background-repeat: no-repeat;
+            }
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            bottom: 75px;
+            right: 55px;
+        }
+
+        .dot {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+            color: white;
+            font-family: sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            opacity: 1;
+        }
+
+        .dot span {
+            position: absolute;
+            z-index: 2;
+        }
+
+        .dot svg {
+            position: absolute;
+            width: 34px;
+            height: 34px;
+            transform: rotate(-90deg);
+            z-index: 1;
+        }
+
+        .dot svg circle {
+            fill: none;
+            stroke: white;
+            stroke-width: 2;
+            stroke-linecap: round;
+            r: 15;
+            cx: 17;
+            cy: 17;
+            stroke-dasharray: 94.2;
+            stroke-dashoffset: 94.2;
+            transition: stroke-dashoffset 0s linear;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            padding: 50px 20px 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-logo {
+            max-width: 160px;
+            margin-bottom: 15px;
+        }
+
+        .footer-title {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            border: 1px solid #333;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-input {
+            padding: 12px;
+            flex: 1;
+            border: none;
+            background: none;
+            color: #fff;
+        }
+
+        .newsletter-input::placeholder {
+            color: #888;
+        }
+
+        .newsletter-button {
+            background-color: #d4af37;
+            border: none;
+            padding: 12px 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer-social a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #fff;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #d4af37;
+        }
+
+        .footer-section h4 {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-section a {
+            display: block;
+            color: #bbb;
+            margin-bottom: 6px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #222;
+            padding-top: 15px;
+        }
     </style>
 </head>
 
 <body>
     <!-- Topo do Site -->
     <header class="header">
-        <img src="IMG/logo.png" alt="Logo KingsStreet" class="logo"> <!-- Espaço para imagem em PNG -->
+        <div class="logo-container">
+            <img src="IMG/logo.png" alt="Logo KingsStreet" class="logo">
+            <span class="brand-name">KingStreet</span>
+        </div>
         <nav class="nav-links">
             <a href="#" class="nav-link">Home</a>
-            <a href="colectionRoyal.html" class="nav-link">Coleções</a>
+            <a href="#" class="nav-link">Drops</a>
             <a href="#sobre" class="nav-link scroll-link">Sobre</a>
         </nav>
 
@@ -379,7 +717,7 @@
 
         <div class="dropdown-menu" id="dropdownMenu">
             <a href="#">Home</a>
-            <a href="colectionRoyal.html">Coleções</a>
+            <a href="#">Drops</a>
             <a href="#sobre" class="scroll-link">Sobre</a>
             <a href="#" class="button-mobile"
                 style="background-color: var(--accent-color); color: var(--primary-color); border: none; border-radius: 4px; padding: 0.5rem; text-align: center; width: fit-content;">Conta</a>
@@ -387,52 +725,89 @@
     </header>
 
     <!-- Banner Inicial -->
-    <section class="banner">
-        <img src="IMG/BANNER.png" alt="Modelo vestindo KingsStreet na rua" class="banner-image" />
-        <div
-            class="absolute inset-0 flex flex-col items-center justify-end p-6 pb-10 bg-gradient-to-t from-black/80 to-transparent">
-            <span class="street-tag text-white mb-2">Use o cupom</span>
-            <h1 class="kings-logo text-5xl md:text-7xl text-center mb-2 text-yellow-400">KINGS</h1>
-            <p class="text-lg text-center uppercase tracking-widest">Para ter 15% de desconto nas suas compras!</p>
+    <div class="items-center justify-center">
+        <div class="carousel" id="banner-carousel">
+            <div class="slides">
+                <div alt="Slide 1" class="slide-img-one slide active"></div>
+                <div alt="Slide 2" class="slide-img-two slide"></div>
+            </div>
+            <div class="carousel-nav">
+                <div class="dot active" data-index="0"><span>1</span><svg>
+                        <circle />
+                    </svg></div>
+                <div class="dot" data-index="1"><span>2</span><svg>
+                        <circle />
+                    </svg></div>
+            </div>
         </div>
-    </section>
+    </div>
 
     <!-- Destaque de Coleções -->
     <section class="collection-highlight">
-        <h2 class="text-center text-2xl mb-6">Destaque de Coleções</h2>
+        <h2 class="text-center text-2xl mb-6">Nossos ultimos lançamentos!</h2>
         <div class="flex flex-wrap justify-center">
-            <div class="product-card">
-                <img src="IMG/Collection-Royal.png" alt="Produto 1" class="mb-2">
-                <h3>Camiseta - "Royal Back"</h3>
-                <p class="gold-text">------</p>
-                <p>Sinta o peso da sua coroa mesmo quando ela não está na cabeça.</p>
-                <p>Com arte exclusiva em estilo grafite urbano, ela funde o poder da realeza com a essência das ruas.
-                </p>
-                <p>A ilustração traz um símbolo dual: a força e a beleza de uma mente soberana,</p>
-                <p>e o caos da alma que jamais se dobra.</p>
-                <p class="gold-text">R$ 79,99</p>
+            <div class="product-card cards">
+                <div class="badge">33% de desconto</div>
+                <div class="image-container">
+                    <img src="IMG/T-Shirts/Royal-Back.png" alt="Camiseta costas" class="product-image default">
+                    <img src="IMG/T-Shirts/Royal-Front.png" alt="Camiseta frente" class="product-image hover">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Camiseta - "Royal Back"</h3>
+                    <div class="product-price">
+                        <span class="old-price">R$ 149,90</span>
+                        <span class="new-price">R$ 99,90</span>
+                    </div>
+                    <p class="product-description">
+                        Sinta o peso da sua coroa mesmo quando ela não está na cabeça.
+                        Com arte exclusiva em estilo grafite urbano, ela funde o poder da realeza com a essência das
+                        ruas. A ilustração traz um símbolo dual: a força e a beleza de uma mente soberana,
+                        e o caos da alma que jamais se dobra.
+                    </p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
             </div>
-            <div class="product-card">
-                <img src="IMG/KINGSTREET - DOMINIUM PER STYLUM.png" alt="Produto 2" class="mb-2">
-                <h3>Camiseta - "Dominium per stylum"</h3>
-                <p class="gold-text">------</p>
-                <p>Entre o clássico e o urbano, nasce uma peça que traduz poder,</p>
-                <p>conquista e estilo. A camiseta "Veni Vidi Vici" da KingStreet</p>
-                <p>representa o espírito de quem nasceu para dominar, inspirada na célebre</p>
-                <p>frase de Júlio César: "Vim, vi, venci</p>
-                <p class="gold-text">R$ 79,99</p>
+            <div class="product-card cards">
+                <div class="badge">33% de desconto</div>
+                <div class="image-container">
+                    <img src="IMG/T-Shirts/Stylum-Back.png" alt="Camiseta costas" class="product-image default">
+                    <img src="IMG/T-Shirts/Stylum-Front.png" alt="Camiseta frente" class="product-image hover">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Camiseta - "Dominium per stylum"</h3>
+                    <div class="product-price">
+                        <span class="old-price">R$ 149,90</span>
+                        <span class="new-price">R$ 99,90</span>
+                    </div>
+                    <p class="product-description">
+                        Entre o clássico e o urbano, nasce uma peça que traduz poder,
+                        conquista e estilo. A camiseta "Veni Vidi Vici" da KingStreet
+                        representa o espírito de quem nasceu para dominar, inspirada na célebre
+                        frase de Júlio César: "Vim, vi, venci"
+                    </p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
             </div>
-            <div class="product-card">
-                <img src="IMG/Dragon-Royal.png" alt="Produto 3" class="mb-2">
-                <h3>Camiseta - "Brave King"</h3>
-                <p class="gold-text">------</p>
-                <p>A Brave King é mais do que uma camiseta — é um símbolo de resistência e poder.</p>
-                <p>Trazendo um dragão chinês em tons de azul royal, ela carrega</p>
-                <p>a essência da realeza e da bravura. A tipografia em estilo graffiti</p>
-                <p>streetwear grita atitude nas ruas, enquanto o fundo bege</p>
-                <p>destaca ainda mais a arte urbana com um toque limpo e sofisticado.</p>
-                <p>Ideal para quem não segue tendências, mas impõe presença.</p>
-                <p class="gold-text">R$ 79,99</p>
+            <div class="product-card cards">
+                <div class="badge">33% de desconto</div>
+                <div class="image-container">
+                    <img src="IMG/T-Shirts/Brave-Back.png" alt="Camiseta costas" class="product-image default">
+                    <img src="IMG/T-Shirts/Brave-Front.png" alt="Camiseta frente" class="product-image hover">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Camiseta - "Brave King"</h3>
+                    <div class="product-price">
+                        <span class="old-price">R$ 149,90</span>
+                        <span class="new-price">R$ 99,90</span>
+                    </div>
+                    <p class="product-description">
+                        A Brave King é mais do que uma camiseta — é um símbolo de resistência e poder.
+                        Trazendo um dragão chinês em tons de azul royal, ela carrega
+                        a essência da realeza e da bravura.
+                        Ideal para quem não segue tendências, mas impõe presença.
+                    </p>
+                    <button class="add-to-cart">Adicionar ao Carrinho</button>
+                </div>
             </div>
         </div>
     </section>
@@ -440,7 +815,7 @@
     <!-- Sobre a Marca -->
     <section id="sobre" class="slideshow-section">
 
-        <div class="slide active" id="slide1">
+        <div class="slide-about active" id="slide1">
             <div class="text-container">
                 <h1 class="text-4xl mb-6 gold-text"><span class="gold-text">👑 KINGSTREET</span></h1>
                 <p class="text-lg mb-4">A KingStreet é mais do que uma marca.</p>
@@ -451,7 +826,7 @@
             </div>
         </div>
 
-        <div class="slide" id="slide2">
+        <div class="slide-about" id="slide2">
             <div class="text-container">
                 <h2 class="text-3xl mb-6 gold-text">🌆 NOSSO DNA</h2>
                 <p class="text-lg mb-4">Cada peça KingStreet é uma armadura urbana.</p>
@@ -463,7 +838,7 @@
             </div>
         </div>
 
-        <div class="slide" id="slide3">
+        <div class="slide-about" id="slide3">
             <div class="text-container">
                 <h2 class="text-3xl mb-6 gold-text">🔥 NOSSA MISSÃO</h2>
                 <p class="text-lg mb-4">Vivemos em uma era onde a aparência dita, mas a presença transforma.</p>
@@ -476,7 +851,7 @@
             </div>
         </div>
 
-        <div class="slide" id="slide4">
+        <div class="slide-about" id="slide4">
             <div class="text-container">
                 <h2 class="text-3xl mb-6 gold-text">🛠️ COMO FAZEMOS</h2>
                 <p class="text-lg mb-4">Unimos design autoral, tecidos premium e cortes oversized com estética forte e
@@ -488,7 +863,7 @@
             </div>
         </div>
 
-        <div class="slide" id="slide5">
+        <div class="slide-about" id="slide5">
             <div class="text-container">
                 <h2 class="text-3xl mb-6 gold-text">🚀 O QUE VOCÊ REPRESENTA AQUI</h2>
                 <p class="text-lg mb-4">Na KingStreet, você não é só cliente.</p>
@@ -512,7 +887,7 @@
             <div class="testimonial-slide active">
                 <img src="https://placehold.co/100x100?text=C" alt="Cliente 1" class="rounded-full mx-auto mb-4">
                 <div class="font-semibold text-center">Cleiton</div>
-                <div class="text-center italic mb-2">"A KingsStreet mudou a forma como vejo a moda urbana!"</div>
+                <div class="text-center italic mb-2">"A KingStreet mudou a forma como vejo a moda urbana!"</div>
                 <div class="text-center gold-text">★★★★★</div>
             </div>
             <div class="testimonial-slide">
@@ -530,10 +905,55 @@
         </div>
     </section>
 
-    <!-- Rodapé -->
     <footer class="footer">
-        <p>&copy; 2025 KingsStreet. Todos os direitos reservados.</p>
+        <div class="footer-container">
+
+            <!-- Logo e Newsletter -->
+            <div class="footer-section">
+                <img src="IMG/logo.png" alt="KingStreet" class="footer-logo">
+                <p class="footer-title">INSCREVA-SE PARA NOVIDADES E PROMOÇÕES EXCLUSIVAS</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-mail" class="newsletter-input">
+                    <button type="submit" class="newsletter-button">➔</button>
+                </form>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- Nossos Produtos -->
+            <div class="footer-section">
+                <h4>Nossos Produtos</h4>
+                <a href="#">Oversized</a>
+                <a href="#">Outlet - 70% OFF</a>
+            </div>
+
+            <!-- Dúvidas -->
+            <div class="footer-section">
+                <h4>Dúvidas?</h4>
+                <a href="#">Rastrear Pedido</a>
+                <a href="shipping.html">Frete e Entrega</a>
+                <a href="change-item.html">Trocas e Devoluções</a>
+                <a href="privacy-policy.html">Política de Privacidade</a>
+            </div>
+
+            <!-- Missão -->
+            <div class="footer-section">
+                <h4>ENTRE NO MUNDO KINGSTREET</h4>
+                <p>
+                    A KingStreet nasceu para dominar o streetwear e o universo fitness, unindo estilo e performance.
+                    Nossa missão é trazer roupas que expressem atitude, conforto e a essência da realeza das ruas.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025, KingStreet. 00.000.000/0001-00
+        </div>
     </footer>
+
+
 
     <script>
         // Testimonial slider functionality
@@ -554,63 +974,6 @@
             // Auto rotate every 5 seconds
             setInterval(nextSlide, 5000);
         });
-    </script>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function updateSlides() {
-            slides.forEach((slide, index) => {
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                    slide.classList.remove('previous');
-                } else if (index < currentSlide) {
-                    slide.classList.remove('active');
-                    slide.classList.add('previous');
-                } else {
-                    slide.classList.remove('active');
-                    slide.classList.remove('previous');
-                }
-            });
-        }
-
-        function nextSlide() {
-            if (currentSlide < slides.length - 1) {
-                currentSlide++;
-                updateSlides();
-            }
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlides();
-            }
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateSlides();
-        }
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                prevSlide();
-            }
-        });
-
-        // Auto-advance every 15 seconds
-        setInterval(() => {
-            if (currentSlide < slides.length - 1) {
-                nextSlide();
-            } else {
-                goToSlide(0);
-            }
-        }, 15000);
     </script>
 
     <script>
@@ -674,6 +1037,148 @@
             });
         });
     </script>
+
+    <script>
+        // Alternativa para navegadores mais antigos que não suportam CSS transitions
+        document.addEventListener('DOMContentLoaded', function () {
+            const productCard = document.querySelector('.product-card');
+            const defaultImage = document.querySelector('.product-image.default');
+            const hoverImage = document.querySelector('.product-image.hover');
+
+            // Garante que apenas uma imagem seja visível inicialmente
+            hoverImage.style.opacity = '0';
+            defaultImage.style.opacity = '1';
+
+            productCard.addEventListener('mouseenter', function () {
+                defaultImage.style.opacity = '0';
+                hoverImage.style.opacity = '1';
+            });
+
+            productCard.addEventListener('mouseleave', function () {
+                defaultImage.style.opacity = '1';
+                hoverImage.style.opacity = '0';
+            });
+        });
+    </script>
+
+    <script>
+        let currentSlideAbout = 0;
+        const slidesAbout = document.querySelectorAll('.slide-about');
+
+        function updateSlidesAbout() {
+            slidesAbout.forEach((slide, index) => {
+                if (index === currentSlideAbout) {
+                    slide.classList.add('active');
+                    slide.classList.remove('previous');
+                } else if (index < currentSlideAbout) {
+                    slide.classList.remove('active');
+                    slide.classList.add('previous');
+                } else {
+                    slide.classList.remove('active');
+                    slide.classList.remove('previous');
+                }
+            });
+        }
+
+        function nextSlideAbout() {
+            if (currentSlideAbout < slidesAbout.length - 1) {
+                currentSlideAbout++;
+                updateSlidesAbout();
+            }
+        }
+
+        function prevSlideAbout() {
+            if (currentSlideAbout > 0) {
+                currentSlideAbout--;
+                updateSlidesAbout();
+            }
+        }
+
+        function goToSlideAbout(index) {
+            currentSlideAbout = index;
+            updateSlidesAbout();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') {
+                nextSlideAbout();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlideAbout();
+            }
+        });
+
+        // Auto-advance every 15 seconds
+        setInterval(() => {
+            if (currentSlideAbout < slidesAbout.length - 1) {
+                nextSlideAbout();
+            } else {
+                goToSlideAbout(0);
+            }
+        }, 15000);
+    </script>
+
+    <script>
+        const dots = document.querySelectorAll('#banner-carousel .dot');
+        const slides = document.querySelectorAll('#banner-carousel .slide');
+        const duration = 4000;
+        let currentBanner = 0;
+        let startTime;
+        let interval;
+
+        // Função para animar o círculo
+        function animateCircle() {
+            const circle = dots[currentBanner].querySelector('circle');
+            const now = performance.now();
+            const elapsed = now - startTime;
+            const percent = Math.min(elapsed / duration, 1);
+            const offset = 94.2 * (1 - percent);
+            circle.style.strokeDashoffset = offset;
+
+            if (percent < 1) {
+                requestAnimationFrame(animateCircle);
+            }
+        }
+
+        // Troca de slide
+        function goToSlideBanner(index) {
+            // Reset anterior
+            dots[currentBanner].classList.remove('active');
+            slides[currentBanner].classList.remove('active');
+            dots[currentBanner].querySelector('circle').style.strokeDashoffset = 94.2;
+
+            currentBanner = index;
+            dots[currentBanner].classList.add('active');
+            slides[currentBanner].classList.add('active');
+
+            startTime = performance.now();
+            animateCircle();
+        }
+
+        // Avança para o próximo slide automaticamente
+        function switchSlideBanner() {
+            const next = (currentBanner + 1) % slides.length;
+            goToSlideBanner(next);
+        }
+
+        // Inicia carrossel automático
+        function startCarousel() {
+            goToSlideBanner(currentBanner);
+            interval = setInterval(switchSlideBanner, duration);
+        }
+
+        // Clicando nas bolinhas
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(interval);       // Pausa o loop automático
+                goToSlideBanner(index);        // Vai para o slide clicado
+                interval = setInterval(switchSlideBanner, duration);  // Reinicia o loop
+            });
+        });
+
+        startCarousel();
+    </script>
+
 
 </body>
 
