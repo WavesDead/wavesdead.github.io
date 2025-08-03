@@ -472,19 +472,20 @@
         }
 
         .slides {
+            position: relative;
             width: 100%;
             height: 100%;
-            position: relative;
         }
 
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
             opacity: 0;
             transition: opacity 0.8s ease;
+            object-fit: cover;
         }
 
         .slide.active {
@@ -492,62 +493,52 @@
         }
 
         .slide-img-one {
-            object-fit: cover;
             margin-top: 0px;
-            /* Mantém a proporção cobrindo o container */
             transition: transform 0.3s ease;
-            /* Suaviza o zoom */
-
+            width: 100%;
+            height: 100%;
             background: url("IMG/Slides/Slide-One-Normal.png");
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
 
         .slide-img-two {
-
-            object-fit: cover;
             margin-top: 0px;
-            /* Mantém a proporção cobrindo o container */
             transition: transform 0.3s ease;
-            /* Suaviza o zoom */
-
+            width: 100%;
+            height: 100%;
             background: url("IMG/Slides/Slide-Two-Normal.png");
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
 
-        /* Responsive Slide banner */
         @media (max-width: 768px) {
-
             .carousel {
                 height: 600px;
             }
 
             .slide-img-one {
-                background: url("IMG/Slides/Slide-One-Mobile.png");
-                background-repeat: no-repeat;
+                background: url("IMG/Slides/Slide-One-Mobile.png") center/cover no-repeat;
             }
 
             .slide-img-two {
-                background: url("IMG/Slides/Slide-Two-Mobilee.png");
-                background-repeat: no-repeat;
+                background: url("IMG/Slides/Slide-Two-Mobile-768.png") center/cover no-repeat;
             }
         }
 
         @media (max-width: 450px) {
-
             .carousel {
                 height: 600px;
             }
 
             .slide-img-one {
-                background: url("IMG/Slides/Slide-One-Mobilee.png");
-                background-repeat: no-repeat;
+                background: url("IMG/Slides/Slide-One-Mobilee.png") center/cover no-repeat;
             }
 
             .slide-img-two {
-                background: url("IMG/Slides/Slide-Two-Mobile.png");
-                background-repeat: no-repeat;
+                background: url("IMG/Slides/Slide-Two-Mobile.png") center/cover no-repeat;
             }
         }
 
@@ -1201,3 +1192,4 @@
 </body>
 
 </html>
+
